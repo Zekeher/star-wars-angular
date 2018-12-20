@@ -1,0 +1,55 @@
+.title-cards {
+    margin-top: 2%;
+    text-transform: uppercase;
+    padding-bottom: 2px;
+    border-bottom: 4px solid white;
+    color: white;
+}
+
+.card-sw {
+    margin-top: 2%;
+    .card-pj,
+    .card-detail {
+        border-radius: 15px;
+        height: 290px;
+        width: 190px;
+        text-align: center;
+    }
+    .card-pj {
+        position: relative;
+        margin: 8px;
+        padding: 0px;
+        &:hover {
+            .card-logo {
+                filter: grayscale(0%);
+            }
+        }
+        .card-logo {
+            filter: grayscale(70%);
+            border-radius: 15px;
+            height: 200px;
+            width: 190px;
+        }
+        .card-detail {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 10px;
+            width: 190px;
+            height: 120px;
+            z-index: 999;
+            border-radius: 0 0 15px 15px;
+            background: #312e2e;
+            color: #cfcccc;
+            p {
+                font-weight: bold;
+                text-transform: uppercase;
+                margin-bottom: 0px;
+                font-size: .86em;
+            }
+            .btn-view-default {
+                margin-top: 8px;
+            }
+        }
+    }
+}

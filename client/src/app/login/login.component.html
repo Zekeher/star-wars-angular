@@ -1,0 +1,21 @@
+<div class="container-login">
+    <div class="row">
+        <alert-menssage [msg]="menssage"></alert-menssage>
+    </div>
+    <div class="row">
+        <div class="container-form-login">
+            <app-img-logo [setClass]="'logo-sw'" [setImage]="'../../assets/images/logo_star.png'"></app-img-logo>
+            <a [hidden]="login" (click)="showLogin()">INGRESAR</a>
+            <div [hidden]="!login" class="container-join">
+                <form [formGroup]="formLogin" (ngSubmit)="loginUser(formLogin.value)">
+                    <div class="row">
+                        <input class="col-12" type="text" formControlName="name" placeholder="Usuario">
+                        <input class="col-12" type="password" formControlName="pass" placeholder="Contraseña">
+                        <button class="col-12 submit-sw" type="submit">Ingresar</button>
+                    </div>
+                </form>
+            </div>
+           <app-img-logo [setClass]="'logo-sw'" [setImage]="'../../assets/images/logo_wars.png'"></app-img-logo>
+        </div>
+    </div>
+</div>

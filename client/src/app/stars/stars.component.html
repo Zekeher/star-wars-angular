@@ -1,0 +1,4 @@
+<div class="container-star" *ngFor="let star of stars; let i = index" (click)="setNewStar(i+1)">
+    <span *ngIf="star" class="fas fa-star"></span>
+    <span *ngIf="!star" class="far fa-star"></span>
+</div>

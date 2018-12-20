@@ -1,0 +1,124 @@
+<div *ngIf="oneSw" class="media view-pj-container">
+    <div *ngIf="oneSwShow === 'view'" class="row view-pj-body">
+        <div [ngClass]="oneSw.force === 'Light' ? 'gradient-light' : 'gradient-dark'" class="media-left view-pj-img">
+            <app-img-logo [setImage]="oneSw.img"></app-img-logo>
+        </div>
+        <div class="media-body">
+            <a [routerLink]="'/home'" class="btn-back" role="button">X</a>
+            <div class="media-head">
+                <h3>{{oneSw.name}}</h3>
+                <span *ngIf="oneSw.force === 'Light'" class="fab fa-rebel view-pj-force" color="#50b3ff"></span>
+                <span *ngIf="oneSw.force === 'Dark'" class="fab fa-empire view-pj-force" color="#a94442"></span>
+                <div class="media-stars">
+                    <stars-rating [getStar]="oneSw.star"></stars-rating>
+                </div>
+            </div>
+            <div class="media-txt">
+                <p>{{oneSw.description}}</p>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <a (click)="showEdit()" class="btn btn-view-default" role="button">Editar</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-view-danger" (click)="deleteModal(oneSw.name)" role="button">Eliminar</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 footer-view">
+                    <img class="logo-sw" src="../../assets/images/Star_Wars_logo.png" alt="logo star wars">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="oneSwShow === 'edit'" class="row view-pj-body view-pj-body-edit">
+        <div class="media-left view-pj-img gradient-edit">
+            <app-img-logo [setImage]="oneSw.img"></app-img-logo>
+        </div>
+        <div class="media-body">
+            <a [routerLink]="'/home'" class="btn-back" role="button">X</a>
+            <div class="media-head">
+                <h3>{{oneSw.name}}</h3>
+                <div class="media-stars">
+                    <stars-rating [getStar]="oneSw.star" (newStar)="starsNew($event)"></stars-rating>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea class="form-control view-pj-textarea" [(ngModel)]="oneSw.description"></textarea>
+                </div>
+                <div class="col-md-3">
+                    <p>Seleccione la fuerza:</p>
+                </div>
+                <div class="col-md-7">
+                    <label class="switch">
+                    <input [(ngModel)]="selectForce" class="slider-sw" type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <div class="col-md-12">
+                    <input [(ngModel)]="oneSw.img" name="SW image" class="form-control view-pj-input" type="text" placeholder="URL de la imagen">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <a (click)="showEdit()" class="btn btn-view-danger" role="button">Cancelar</a>
+                </div>
+                <div class="col-md-2">
+                    <a (click)="updateOneSw()" class="btn btn-view-default" role="button">Guardar</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 footer-view">
+                    <img class="logo-sw" src="../../assets/images/Star_Wars_logo.png" alt="logo star wars">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="oneSwShow === 'create'" class="row view-pj-body view-pj-body-edit">
+        <div class="media-left view-pj-img gradient-edit">
+        </div>
+        <div class="media-body">
+            <form (ngSubmit)="createOneSw()" name="createSW" #createSW="ngForm">
+                <a (click)="cancelCreate()" class="btn-back" role="button">X</a>
+                <div class="media-head">
+                    <input type="text" [(ngModel)]="oneSw.name" class="form-control view-pj-input" placeholder="Ingrese un nombre..." name="name" #name required/>
+                    <div class="media-stars">
+                        <stars-rating [getStar]="oneSw.star" (newStar)="starsNew($event)" name="stars" #stars></stars-rating>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea [(ngModel)]="oneSw.description" class="form-control view-pj-textarea" placeholder="Ingrese una descripcion..." name="description" #description required></textarea>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Seleccione la fuerza:</p>
+                    </div>
+                    <div class="col-md-7">
+                        <label class="switch">
+                    		<input [(ngModel)]="selectForce" class="slider-sw" type="checkbox" checked name="force" #force>
+                    		<span class="slider round"></span>
+                  		</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input [(ngModel)]="oneSw.img" name="SW image" class="form-control view-pj-input" type="text" placeholder="URL de la imagen">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <a (click)="cancelCreate()" class="btn btn-view-default" role="button">Cancelar</a>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-view-danger" type="submit" [disabled]="createSW.invalid">Crear</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 footer-view">
+                        <img class="logo-sw" src="../../assets/images/Star_Wars_logo.png" alt="logo star wars">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<show-modal [dataModal]="viewModal" (sendEvent)="optionOneSW($event)"></show-modal>

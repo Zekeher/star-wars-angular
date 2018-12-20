@@ -1,0 +1,15 @@
+<h2 class="title-cards">Personajes de Star Wars</h2>
+<div class="row card-sw">
+    <div *ngFor="let sw of allStarWars" class="col-sm-2 card-pj">
+        <app-img-logo [setClass]="'card-logo'" [setImage]="sw.img"></app-img-logo>
+        <div class="card-detail">
+            <p>{{sw.name}}
+                <span *ngIf="sw.force === 'Light'" class="fab fa-rebel view-pj-force" color="#50b3ff"></span>
+                <span *ngIf="sw.force === 'Dark'" class="fab fa-empire view-pj-force" color="#a94442"></span>
+            </p>
+            <stars-rating [getStar]="sw.star"></stars-rating>
+            <a class="btn btn-view-default" [routerLink]="['/view/',sw.name]">Ver mas...</a>
+        </div>
+    </div>
+</div>
+<a class="btn btn-sw-create" [routerLink]="['/view/','create']"><span class="fas fa-plus"></span></a>

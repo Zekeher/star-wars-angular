@@ -1,0 +1,17 @@
+<div *ngIf="modal.show" class="modal-sw" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{modal.title | uppercase}}</h5>
+                <a (click)="showModal()" class="btn-back" role="button">X</a>
+            </div>
+            <div class="modal-body">
+                <p>{{modal.txt}}</p>
+            </div>
+            <div class="modal-footer">
+                <a (click)="sendOk()" class="btn btn-view-default">si</a>
+                <a (click)="showModal()" class="btn btn-view-danger">no</a>
+            </div>
+        </div>
+    </div>
+</div>
